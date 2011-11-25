@@ -12,7 +12,7 @@ module MoreShouldaMatchers
       def matches?(model_class)
         @model_class = model_class
 
-        !!@model_class.nested_attributes_options[@association]
+        model_class_has_nested_attributes_option_for_association?
       end
 
       def failure_message
@@ -28,6 +28,12 @@ module MoreShouldaMatchers
       end
 
     private
+      def model_class_has_nested_attributes_option_for_association?
+        @model_class.nested_attributes_options.fetch(@association)
+        true
+      rescue IndexError
+        false
+      end
 
       def expectation
         GeneratesExpectationMessage.for_model_class_and_association(
