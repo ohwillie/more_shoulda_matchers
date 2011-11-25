@@ -4,7 +4,7 @@ require 'more-shoulda-matchers/version'
 
 Gem::Specification.new do |s|
   s.name        = 'more-shoulda-matchers'
-  s.version     = More::Shoulda::Matchers::VERSION
+  s.version     = MoreShouldaMatchers::VERSION
   s.authors     = ['Rob Hanlon']
   s.email       = ['rob@mediapiston.com']
   s.homepage    = 'http://github.com/ohwillie'

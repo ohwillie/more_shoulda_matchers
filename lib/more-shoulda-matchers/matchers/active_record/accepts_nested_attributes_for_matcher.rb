@@ -1,3 +1,4 @@
 module MoreShouldaMatchers
-  VERSION = "0.0.1"
+  module ActiveRecord
+  end
 end
