@@ -5,31 +5,29 @@ require 'more_shoulda_matchers/matchers/active_record/accepts_nested_attributes_
 module MoreShouldaMatchers
   describe ActiveRecord do
     context '#accept_nested_attributes_for' do
-      subject { stub.extend(ActiveRecord) }
+      subject do stub.extend ActiveRecord end
 
       it 'should create a new matcher object' do
-        association = :association
-
         ActiveRecord::AcceptsNestedAttributesForMatcher.
-          should_receive(:new).
+          stub(:new).
           with(:association)
 
-        subject.accept_nested_attributes_for(:association)
+        subject.accept_nested_attributes_for :association
       end
     end
   end
 
   module ActiveRecord
     describe AcceptsNestedAttributesForMatcher do
-      let(:klass) { AcceptsNestedAttributesForMatcher }
+      let :klass do AcceptsNestedAttributesForMatcher end
 
-      let(:instance) { klass.new(:association) }
+      let :instance do klass.new :association end
 
       context '#matches?' do
-        subject { instance.matches?(model) }
+        subject do instance.matches? model end
 
         describe 'when the model accepts nested attributes for an association' do
-          let(:model) do
+          let :model do
             define_model do
               has_one :association
               accepts_nested_attributes_for :association
@@ -42,7 +40,7 @@ module MoreShouldaMatchers
         end
 
         describe 'when the model does not accept nested attributes for an association' do
-          let(:model) do
+          let :model do
             define_model do
               has_one :association
             end
@@ -54,7 +52,7 @@ module MoreShouldaMatchers
         end
 
         describe 'when the model accepts nested attributes for a different association' do
-          let(:model) do
+          let :model do
             define_model do
               has_one :other_association
               accepts_nested_attributes_for :other_association
@@ -66,16 +64,15 @@ module MoreShouldaMatchers
           end
         end
 
-        def define_model(&block)
-          Class.new(::ActiveRecord::Base) { class_eval(&block) }
+        def define_model &block
+          Class.new ::ActiveRecord::Base do class_eval &block end
         end
       end
 
-      context 'failure messages' do
-        before(:each) do
+      describe 'failure messages' do
+        before do
           klass::GeneratesExpectationMessage.
-            stub(:for_model_class_and_association).
-            and_return('expectation')
+            stub for_model_class_and_association: 'expectation'
         end
 
         context '#failure_message' do
@@ -106,12 +103,14 @@ module MoreShouldaMatchers
 
     class AcceptsNestedAttributesForMatcher
       describe GeneratesExpectationMessage do
-        it 'should generate the expected message' do
-          result = subject.
-            for_model_class_and_association('model_class', 'association')
+        context '#for_model_class_and_association' do
+          it 'should generate the expected message' do
+            result = subject.
+              for_model_class_and_association 'model_class', 'association'
 
-          result.should ==
-            'model_class to accept nested attributes for association'
+            result.should ==
+              'model_class to accept nested attributes for association'
+          end
         end
       end
     end
