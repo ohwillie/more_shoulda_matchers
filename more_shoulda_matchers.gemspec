@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
-require 'more-shoulda-matchers/version'
+$:.push File.expand_path("../lib", __FILE__)
+require "more_shoulda_matchers/version"
 
 Gem::Specification.new do |s|
-  s.name        = 'more-shoulda-matchers'
+  s.name        = "more_shoulda_matchers"
   s.version     = MoreShouldaMatchers::VERSION
   s.authors     = ['Rob Hanlon']
   s.email       = ['rob@mediapiston.com']
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{An extended set of shoulda matchers.}
   s.description = %q{An extended set of shoulda matchers.}
 
-  s.rubyforge_project = 'more-shoulda-matchers'
+  s.rubyforge_project = 'more_shoulda_matchers'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

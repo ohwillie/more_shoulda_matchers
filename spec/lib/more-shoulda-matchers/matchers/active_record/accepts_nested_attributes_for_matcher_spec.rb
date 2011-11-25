@@ -1,6 +1,6 @@
 require 'active_record'
 
-require 'more-shoulda-matchers/matchers/active_record/accepts_nested_attributes_for_matcher'
+require 'more_shoulda_matchers/matchers/active_record/accepts_nested_attributes_for_matcher'
 
 module MoreShouldaMatchers
   describe ActiveRecord do

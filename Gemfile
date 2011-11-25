@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in more-shoulda-matchers.gemspec
+# Specify your gem's dependencies in more_shoulda_matchers.gemspec
 gemspec
